@@ -101,7 +101,8 @@
 #define MAX_F11_TOUCH_WIDTH 15
 
 #define CHECK_STATUS_TIMEOUT_MS	100
-#define DELAY_BOOT_READY	200
+// #define DELAY_BOOT_READY	200
+#define DELAY_BOOT_READY	20
 #define DELAY_RESET_LOW		20
 #define DELAY_UI_READY		200
 
@@ -3850,7 +3851,7 @@ static int __init synaptics_rmi4_init(void)
 	if (ret)
 		printk("%s() rmi4_f54_module_init() ret = %d\n", __func__, ret);
 	*/
-	return 0;	
+	return 0;
 }
 
 /**
