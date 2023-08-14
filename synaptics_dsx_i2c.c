@@ -71,19 +71,13 @@
 #define WAKEUP_GESTURE false
 
 #define NO_0D_WHILE_2D
-#if 0
-#define REPORT_2D_Z
-#endif
+
 #define REPORT_2D_W
 
 #define F12_DATA_15_WORKAROUND
 
 #define RST 137
 #define INT 136
-
-#if 0
-#define IGNORE_FN_INIT_FAILURE
-#endif
 
 #define RPT_TYPE (1 << 0)
 #define RPT_X_LSB (1 << 1)
@@ -593,7 +587,7 @@ static ssize_t synaptics_rmi4_f01_reset_store(struct device *dev,
 	unsigned int reset;
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -619,7 +613,7 @@ static ssize_t synaptics_rmi4_f01_productinfo_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -633,7 +627,7 @@ static ssize_t synaptics_rmi4_f01_buildid_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -648,7 +642,7 @@ static ssize_t synaptics_rmi4_f01_flashprog_show(struct device *dev,
 	struct synaptics_rmi4_f01_device_status device_status;
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -672,7 +666,7 @@ static ssize_t synaptics_rmi4_0dbutton_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -691,7 +685,7 @@ static ssize_t synaptics_rmi4_0dbutton_store(struct device *dev,
 	struct synaptics_rmi4_device_info *rmi;
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -762,7 +756,7 @@ static ssize_t synaptics_rmi4_wake_gesture_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -776,7 +770,7 @@ static ssize_t synaptics_rmi4_wake_gesture_store(struct device *dev,
 	unsigned int input;
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -2523,6 +2517,8 @@ rescan_pdt:
 					return retval;
 				}
 				break;
+            default:
+                break;
 			}
 
 			/* Accumulate the interrupt count */
@@ -3023,7 +3019,7 @@ static ssize_t synaptics_rmi4_f34_configid_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -3035,7 +3031,7 @@ static ssize_t synaptics_rmi4_f34_firmwareid_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -3046,7 +3042,7 @@ static ssize_t synaptics_rmi4_f01_product_id_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -3059,7 +3055,7 @@ static ssize_t synaptics_light_suspend_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -3097,7 +3093,7 @@ static ssize_t ts_irq_eb_store(struct device *dev,
 	unsigned int enable;
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
@@ -3123,7 +3119,7 @@ static ssize_t ts_irq_eb_show(struct device *dev,
 {
 	struct synaptics_rmi4_data *rmi4_data = exp_data.rmi4_data;
 	if (!rmi4_data){
-		pr_err("F:%s rmi4_data is null!", __func__);
+		dev_err(dev,"F:%s rmi4_data is null!", __func__);
 		return -ENODEV;
 	}
 
