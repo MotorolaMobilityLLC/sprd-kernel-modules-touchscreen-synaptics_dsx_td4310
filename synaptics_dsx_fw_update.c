@@ -876,6 +876,8 @@ static void fwu_parse_partition_table(const unsigned char *partition_table,
 					__func__, blkcount->lockdown);
 			blkcount->total_count += partition_length;
 			break;
+		default:
+			break;
 		};
 	}
 }
@@ -1240,6 +1242,8 @@ static int fwu_write_f34_v7_command_single_transaction(unsigned char cmd)
 	case CMD_ENABLE_FLASH_PROG:
 		data_1_5.partition_id = BOOTLOADER_PARTITION;
 		data_1_5.command = CMD_V7_ENTER_BL;
+		break;
+	default:
 		break;
 	};
 
@@ -2429,6 +2433,8 @@ static int fwu_scan_pdt(void)
 				fwu->f35_fd.data_base_addr =
 						rmi_fd.data_base_addr;
 				break;
+			default:
+				break;
 			}
 		} else {
 			break;
@@ -2670,6 +2676,8 @@ static int fwu_erase_configuration(void)
 		retval = fwu_write_f34_command(CMD_ERASE_BL_CONFIG);
 		if (retval < 0)
 			return retval;
+		break;
+	default:
 		break;
 	}
 
@@ -3352,6 +3360,8 @@ static int fwu_start_write_config(void)
 		if (retval < 0)
 			goto exit;
 		break;
+	default:
+		break;
 	}
 
 	pr_notice("%s: Config written\n", __func__);
@@ -3364,6 +3374,8 @@ exit:
 	case DP_CONFIG_AREA:
 	case PM_CONFIG_AREA:
 		rmi4_data->reset_device(rmi4_data);
+		break;
+	default:
 		break;
 	}
 
@@ -3527,6 +3539,9 @@ static int fwu_start_reflash(void)
 			rmi4_data->reset_device(rmi4_data);
 			break;
 		default:
+			dev_err(&fwu->rmi4_data->i2c_client->dev,
+				"%s: Failed to do reflash\n",
+				__func__);
 			break;
 		}
 	}
