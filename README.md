@@ -1,0 +1,1 @@
+# sprd-kernel-modules-touchscreen-synaptics_dsx_td4310
